@@ -6,16 +6,18 @@ import 'package:event_bus/event_bus.dart';
 
 var eventBus = EventBus();
 
-void fire(dynamic event) {
-  eventBus.fire(event);
-}
-
 typedef EventBusCallback<T> = void Function(T data);
 
-void listen<T>({EventBusCallback<T> callback}) {
-  eventBus.on<T>().listen((data) {
-    if (callback != null) {
-      callback(data);
-    }
-  });
+class EventBusHelper {
+  static void fire(dynamic event) {
+    eventBus.fire(event);
+  }
+
+  static void listen<T>({EventBusCallback<T> callback}) {
+    eventBus.on<T>().listen((data) {
+      if (callback != null) {
+        callback(data);
+      }
+    });
+  }
 }

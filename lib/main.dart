@@ -22,7 +22,7 @@ class MyHomePage extends StatelessWidget {
         body: MyHomeContent(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            eventBus.fire(UserInfo(name: "wzy", age: 5));
+            EventBusHelper.fire(UserInfo(name: "wzy", age: 5));
           },
           child: Icon(Icons.add),
         ),
@@ -40,7 +40,7 @@ class _MyHomeContentState extends State<MyHomeContent> {
   @override
   void initState() {
     super.initState();
-    listen<UserInfo>(callback: (data) {
+    EventBusHelper.listen<UserInfo>(callback: (data) {
       setState(() {
         message = "name is ${data.name}, age is ${data.age}";
       });
