@@ -9,24 +9,24 @@ void main() {
 
 class MyApp extends StatelessWidget {
   build(context) => MaterialApp(
-        home: MyHomePage(),
-        debugShowCheckedModeBanner: false,
-      );
+    home: MyHomePage(),
+    debugShowCheckedModeBanner: false,
+  );
 }
 
 class MyHomePage extends StatelessWidget {
   build(context) => Scaffold(
-        appBar: AppBar(
-          title: Text("event bus"),
-        ),
-        body: MyHomeContent(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            eventBus.fire(UserInfo(name: "wzy", age: 5));
-          },
-          child: Icon(Icons.add),
-        ),
-      );
+    appBar: AppBar(
+      title: Text("event bus"),
+    ),
+    body: MyHomeContent(),
+    floatingActionButton: FloatingActionButton(
+      onPressed: () {
+        eventBus.fire(UserInfo(name: "wzy", age: 5));
+      },
+      child: Icon(Icons.add),
+    ),
+  );
 }
 
 class MyHomeContent extends StatefulWidget {
