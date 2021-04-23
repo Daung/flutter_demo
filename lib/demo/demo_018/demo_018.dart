@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:study_flutter_003/bean/user_info.dart';
-
-import 'bus/bus.dart';
+import 'package:study_flutter_003/bus/bus.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,24 +8,24 @@ void main() {
 
 class MyApp extends StatelessWidget {
   build(context) => MaterialApp(
-    home: MyHomePage(),
-    debugShowCheckedModeBanner: false,
-  );
+        home: MyHomePage(),
+        debugShowCheckedModeBanner: false,
+      );
 }
 
 class MyHomePage extends StatelessWidget {
   build(context) => Scaffold(
-    appBar: AppBar(
-      title: Text("event bus"),
-    ),
-    body: MyHomeContent(),
-    floatingActionButton: FloatingActionButton(
-      onPressed: () {
-        eventBus.fire(UserInfo(name: "wzy", age: 5));
-      },
-      child: Icon(Icons.add),
-    ),
-  );
+        appBar: AppBar(
+          title: Text("event bus"),
+        ),
+        body: MyHomeContent(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            EventBusHelper.fire(UserInfo(name: "wzy", age: 5));
+          },
+          child: Icon(Icons.add),
+        ),
+      );
 }
 
 class MyHomeContent extends StatefulWidget {
@@ -40,7 +39,7 @@ class _MyHomeContentState extends State<MyHomeContent> {
   @override
   void initState() {
     super.initState();
-    listen<UserInfo>(callback: (data) {
+    EventBusHelper.listen<UserInfo>(callback: (data) {
       setState(() {
         message = "name is ${data.name}, age is ${data.age}";
       });
