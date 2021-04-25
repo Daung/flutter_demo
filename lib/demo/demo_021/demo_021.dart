@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_flutter_003/route/route.dart';
 
 void main() {
   runApp(MyApp());
@@ -6,45 +7,34 @@ void main() {
 
 class MyApp extends StatelessWidget {
   build(context) => MaterialApp(
-    // home: MyHomePage(),
-    initialRoute: MyHomePage.routeName,
-    //普通的路由跳转，
-    //如果需要参数 传递argument参数
-    //然后在跳转的页面使用   ModalRoute.of(context).settings.arguments
-    //接收传值
-    routes: {
-      MyHomePage.routeName: (context) => MyHomePage(),
-      WZAboutPage.routeName: (context) => WZAboutPage(),
-    },
-    //如果使用命名路由，又需要，有需要在构造函数中传递参数，使用下面的方法
-    onGenerateRoute: (settings) {
-      if (settings.name == WZSettingPage.routeName) {
-        return MaterialPageRoute(
-            builder: (context) => WZSettingPage(settings.arguments));
-      }
-      return null;
-    },
-    //如果命名路由跳转的页面不存在，会回调这个方法
-    onUnknownRoute: (settings) {
-      return MaterialPageRoute(builder: (context) => WZUnknownPage());
-    },
-    debugShowCheckedModeBanner: false,
-  );
+        // home: MyHomePage(),
+        initialRoute: WZRoute.initialRoute,
+        //普通的路由跳转，
+        //如果需要参数 传递argument参数
+        //然后在跳转的页面使用   ModalRoute.of(context).settings.arguments
+        //接收传值
+        routes: WZRoute.routes,
+        //如果使用命名路由，又需要，有需要在构造函数中传递参数，使用下面的方法
+        onGenerateRoute: WZRoute.onGenerateRoute,
+        //如果命名路由跳转的页面不存在，会回调这个方法
+        onUnknownRoute: WZRoute.onUnknownRoute,
+        debugShowCheckedModeBanner: false,
+      );
 }
 
 class MyHomePage extends StatelessWidget {
   static const routeName = "/";
 
   build(context) => Scaffold(
-    appBar: AppBar(
-      title: Text("named route 命名路由"),
-    ),
-    body: MyHomeContent(),
-    floatingActionButton: FloatingActionButton(
-      onPressed: () {},
-      child: Icon(Icons.add),
-    ),
-  );
+        appBar: AppBar(
+          title: Text("named route 命名路由"),
+        ),
+        body: MyHomeContent(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.add),
+        ),
+      );
 }
 
 class MyHomeContent extends StatelessWidget {
