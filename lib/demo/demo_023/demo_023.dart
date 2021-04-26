@@ -68,6 +68,16 @@ class _MyHomeContentState extends State<MyHomeContent>
     controller.addListener(() {
       setState(() {});
     });
+    //添加状态监听
+    controller.addStatusListener((status) {
+      //如果是结束的状态，就反转动画
+      if(status == AnimationStatus.completed) {
+        controller.reverse();
+        //如果动画是开始的状态，就向前执行动画
+      } else if(status == AnimationStatus.forward) {
+        controller.forward();
+      }
+    });
   }
 
   @override
