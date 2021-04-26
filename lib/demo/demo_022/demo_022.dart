@@ -21,7 +21,7 @@ class MyHomePage extends StatelessWidget {
 
   build(context) => Scaffold(
     appBar: AppBar(
-      title: Text("animation"),
+      title: Text("custom plugin"),
     ),
     body: MyHomeContent(),
     floatingActionButton: FloatingActionButton(
