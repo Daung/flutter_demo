@@ -42,13 +42,13 @@ class WZDeviceInfo {
     rpx = phyW / standardSize * 2;
   }
 
-  static double setRpx(int size) {
+  static double setRpx(double size) {
     double result = rpx * size;
     //测试下来，直接返回 rpx * size 会报错，把它复制给一个变量 在返回解决问题
     return result;
   }
 
-  static double setPx(int size) {
+  static double setPx(double size) {
     double result = px * size;
     //测试下来，直接返回 px * size 会报错，把它复制给一个变量 在返回解决问题
     return result;

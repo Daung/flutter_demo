@@ -1,13 +1,13 @@
 import 'package:study_flutter_003/size/size.dart';
 
 //添加整形的扩展， 添加px 和rpx方法的扩展
-extension IntFit on int {
+extension DoubleFit on double {
   double _px() {
-    return WZDeviceInfo.setPx(this.toDouble());
+    return WZDeviceInfo.setPx(this);
   }
 
   double _rpx() {
-    return WZDeviceInfo.setRpx(this.toDouble());
+    return WZDeviceInfo.setRpx(this);
   }
 
   double get px => _px();
