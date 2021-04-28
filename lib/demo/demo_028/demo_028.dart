@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:study_flutter_003/theme/theme.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,17 +13,8 @@ class MyApp extends StatelessWidget {
     routes: {
       MyHomePage.routeName: (context) => MyHomePage(),
     },
-    theme: ThemeData(
-      //primarySwatch传递的是MaterialColor ，我们使用的的color.red[100]
-      //是因为MaterialColor重写了[]操作符
-        primarySwatch: Colors.blue,
-        primaryColor: Colors.green,
-        accentColor: Colors.purple,
-        textTheme: TextTheme(
-            bodyText1: TextStyle(fontSize: 12, color: Colors.green),
-            bodyText2: TextStyle(fontSize: 18, color: Colors.red)),
-        buttonTheme: ButtonThemeData(
-            minWidth: 30, height: 150, buttonColor: Colors.orange)),
+    theme: WZAppTheme.themeData,
+    darkTheme: WZAppTheme.darkThemeData,
 
     debugShowCheckedModeBanner: false,
   );
