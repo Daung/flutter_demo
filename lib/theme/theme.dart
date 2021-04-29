@@ -10,6 +10,8 @@ class WZAppTheme {
       primarySwatch: Colors.blue,
       primaryColor: Colors.green,
       accentColor: Colors.purple,
+      //默认scaffold的背景颜色
+      canvasColor: Colors.grey,
       textTheme: TextTheme(
           bodyText1: TextStyle(fontSize: _normalFontSize, color: Colors.green),
           bodyText2: TextStyle(fontSize: _largeFontSize, color: Colors.red)),
@@ -22,6 +24,8 @@ class WZAppTheme {
       primarySwatch: Colors.green,
       primaryColor: Colors.green,
       accentColor: Colors.purple,
+      //默认scaffold的背景颜色
+      canvasColor: Colors.grey,
       textTheme: TextTheme(
           bodyText1: TextStyle(fontSize: _normalFontSize, color: Colors.green),
           bodyText2: TextStyle(fontSize: _largeFontSize, color: Colors.red)),
