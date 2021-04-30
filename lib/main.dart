@@ -1,15 +1,23 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:study_flutter_003/core/model/category.dart';
-import 'package:study_flutter_003/core/services/json_parse.dart';
+import 'package:study_flutter_003/core/viewmodel/meal_view_model.dart';
 import 'package:study_flutter_003/size/size.dart';
 import 'package:study_flutter_003/theme/theme.dart';
+import 'package:study_flutter_003/ui/pages/meal_page.dart';
 
+import 'core/service/json_parse.dart';
 import 'extension/int_fit.dart';
-import 'extension/double_fit.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (context) => WZMealViewModel(),
+      )
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -22,6 +30,7 @@ class MyApp extends StatelessWidget {
       initialRoute: MyHomePage.routeName,
       routes: {
         MyHomePage.routeName: (context) => MyHomePage(),
+        MealDetailPage.routeName: (context) => MealDetailPage(),
       },
       theme: WZAppTheme.themeData,
       darkTheme: WZAppTheme.darkThemeData,
@@ -57,11 +66,11 @@ class MyHomeContent extends StatefulWidget {
 }
 
 class _MyHomeContentState extends State<MyHomeContent> {
-  List<WZCategory> _categories = [];
+  List<WZCategoryModel> _categories = [];
 
   @override
   void initState() {
-    JsonParse.getCategoryData().then((value){
+    JsonParse.getCategoryData().then((value) {
       setState(() {
         _categories = value;
       });
@@ -72,27 +81,27 @@ class _MyHomeContentState extends State<MyHomeContent> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-        padding: EdgeInsets.all(5.px),
+        padding: EdgeInsets.all(10.px),
         itemCount: _categories.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, mainAxisSpacing: 5.px, crossAxisSpacing: 5.px),
+            crossAxisCount: 2, mainAxisSpacing: 10.px, crossAxisSpacing: 10.px),
         itemBuilder: (context, index) {
           Color bgColor = _categories[index].cColor;
-          return Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-
-                gradient: LinearGradient(
-                    colors: [
-                      bgColor.withOpacity(0.5),
-                      bgColor
-                    ]
-                )
-            ),
-            child: Text(
-              _categories[index].title,
-              style: TextStyle(color: Colors.black, fontSize: 18.px),
+          return GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, MealDetailPage.routeName,
+                  arguments: _categories[index]);
+            },
+            child: Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.px),
+                  gradient: LinearGradient(
+                      colors: [bgColor.withOpacity(0.5), bgColor])),
+              child: Text(
+                _categories[index].title,
+                style: TextStyle(color: Colors.black, fontSize: 18.px),
+              ),
             ),
           );
         });

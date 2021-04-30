@@ -1,38 +1,37 @@
 {
-  "meal": [
-    {
-      "id": "m1",
-      "categories": [
-        "c1",
-        "c2"
-      ],
-      "title": "番茄酱意大利面",
-      "affordability": 0,
-      "complexity": 0,
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
-      "duration": 20,
-      "ingredients": [
-        "4个西红柿",
-        "一汤匙橄榄油",
-        "1个洋葱",
-        "250克意大利面",
-        "香料",
-        "奶酪（可选）"
-      ],
-      "steps": [
-        "把西红柿和洋葱切成小块。",
-        "烧开水煮沸后加盐。",
-        "把意大利面放进开水里，大约10到12分钟就可以做好。",
-        "同时加热一些橄榄油，加入切好的洋葱。",
-        "两分钟后，加入番茄片、盐、胡椒和其他香料。",
-        "一旦意大利面做好了，调味汁就会做好。",
-        "在成品盘上随意加些奶酪。"
-      ],
-      "isGlutenFree": false,
-      "isVegan": true,
-      "isVegetarian": true,
-      "isLactoseFree": true
-    },
+  "meal": [{
+    "id": "m1",
+    "categories": [
+      "c1",
+      "c2"
+    ],
+    "title": "番茄酱意大利面",
+    "affordability": 0,
+    "complexity": 0,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg",
+    "duration": 20,
+    "ingredients": [
+      "4个西红柿",
+      "一汤匙橄榄油",
+      "1个洋葱",
+      "250克意大利面",
+      "香料",
+      "奶酪（可选）"
+    ],
+    "steps": [
+      "把西红柿和洋葱切成小块。",
+      "烧开水煮沸后加盐。",
+      "把意大利面放进开水里，大约10到12分钟就可以做好。",
+      "同时加热一些橄榄油，加入切好的洋葱。",
+      "两分钟后，加入番茄片、盐、胡椒和其他香料。",
+      "一旦意大利面做好了，调味汁就会做好。",
+      "在成品盘上随意加些奶酪。"
+    ],
+    "isGlutenFree": false,
+    "isVegan": true,
+    "isVegetarian": true,
+    "isLactoseFree": true
+  },
     {
       "id": "m2",
       "categories": [

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 /// title : "汉堡包"
 /// color : "FF9800"
 
-class WZCategory {
+class WZCategoryModel {
   String _id;
   String _title;
   String _color;
@@ -18,13 +18,13 @@ class WZCategory {
 
   Color get cColor => _cColor;
 
-  WZCategory({String id, String title, String color}) {
+  WZCategoryModel({String id, String title, String color}) {
     _id = id;
     _title = title;
     _color = color;
   }
 
-  WZCategory.fromJson(dynamic json) {
+  WZCategoryModel.fromJson(dynamic json) {
     _id = json["id"];
     _title = json["title"];
     _color = json["color"];
