@@ -14,7 +14,7 @@ class WZAppTheme {
       canvasColor: Colors.white,
       highlightColor: Colors.transparent,
       textTheme: TextTheme(
-          bodyText1: TextStyle(fontSize: _normalFontSize, color: Colors.green),
+          bodyText1: TextStyle(fontSize: _normalFontSize, color: Colors.black),
           bodyText2: TextStyle(fontSize: _largeFontSize, color: Colors.red)),
       buttonTheme: ButtonThemeData(
           minWidth: 30, height: 150, buttonColor: Colors.orange));

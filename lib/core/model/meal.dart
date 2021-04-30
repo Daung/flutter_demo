@@ -18,6 +18,7 @@ class WZMealModel {
   String title;
   int affordability;
   int complexity;
+  String complexStr;
   String imageUrl;
   int duration;
   List<String> ingredients;
@@ -27,30 +28,36 @@ class WZMealModel {
   bool isVegetarian;
   bool isLactoseFree;
 
-  WZMealModel({
-      this.id, 
-      this.categories, 
-      this.title, 
-      this.affordability, 
-      this.complexity, 
-      this.imageUrl, 
-      this.duration, 
-      this.ingredients, 
-      this.steps, 
-      this.isGlutenFree, 
-      this.isVegan, 
-      this.isVegetarian, 
+  WZMealModel(
+      {this.id,
+      this.categories,
+      this.title,
+      this.affordability,
+      this.complexity,
+      this.complexStr,
+      this.imageUrl,
+      this.duration,
+      this.ingredients,
+      this.steps,
+      this.isGlutenFree,
+      this.isVegan,
+      this.isVegetarian,
       this.isLactoseFree});
+
+  final List<String> complexs = ["简单", "中等", "复杂"];
 
   WZMealModel.fromJson(dynamic json) {
     id = json["id"];
-    categories = json["categories"] != null ? json["categories"].cast<String>() : [];
+    categories =
+        json["categories"] != null ? json["categories"].cast<String>() : [];
     title = json["title"];
     affordability = json["affordability"];
     complexity = json["complexity"];
+    complexStr = complexs[json["complexity"]];
     imageUrl = json["imageUrl"];
     duration = json["duration"];
-    ingredients = json["ingredients"] != null ? json["ingredients"].cast<String>() : [];
+    ingredients =
+        json["ingredients"] != null ? json["ingredients"].cast<String>() : [];
     steps = json["steps"] != null ? json["steps"].cast<String>() : [];
     isGlutenFree = json["isGlutenFree"];
     isVegan = json["isVegan"];
@@ -75,5 +82,4 @@ class WZMealModel {
     map["isLactoseFree"] = isLactoseFree;
     return map;
   }
-
 }

@@ -4,7 +4,7 @@ import 'package:study_flutter_003/core/model/category.dart';
 import 'package:study_flutter_003/core/viewmodel/meal_view_model.dart';
 import 'package:study_flutter_003/size/size.dart';
 import 'package:study_flutter_003/theme/theme.dart';
-import 'package:study_flutter_003/ui/pages/meal_page.dart';
+import 'package:study_flutter_003/ui/pages/meal/meal_page.dart';
 
 import 'core/service/json_parse.dart';
 import 'extension/int_fit.dart';
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       initialRoute: MyHomePage.routeName,
       routes: {
         MyHomePage.routeName: (context) => MyHomePage(),
-        MealDetailPage.routeName: (context) => MealDetailPage(),
+        WZMealPage.routeName: (context) => WZMealPage(),
       },
       theme: WZAppTheme.themeData,
       darkTheme: WZAppTheme.darkThemeData,
@@ -89,7 +89,7 @@ class _MyHomeContentState extends State<MyHomeContent> {
           Color bgColor = _categories[index].cColor;
           return GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, MealDetailPage.routeName,
+              Navigator.pushNamed(context, WZMealPage.routeName,
                   arguments: _categories[index]);
             },
             child: Container(
