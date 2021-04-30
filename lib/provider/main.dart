@@ -1,13 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:study_flutter_003/provider/counter_view_model.dart';
+import 'package:study_flutter_003/provider/user_view_model.dart';
+
+import '../provider/counter_view_model.dart';
+import '../provider/init_provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => WZCounterViewModel(),
+  //如果共享一个数据，可以下一个ChangeNotifierProvider对象，如果是多个，因该使用
+  // runApp(ChangeNotifierProvider(
+  //   create: (context) => WZCounterViewModel(),
+  //   child: MyApp(),
+  // ));
+
+  //如果共享多个数据  可以使用MultiProvider
+  MultiProvider(
+    providers: providers,
     child: MyApp(),
-  ));
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -93,6 +103,7 @@ class MyBodyPage extends StatelessWidget {
           MyRowTwo(),
           MyRowThree(),
           MyRowFour(),
+          MyRowFive()
         ],
       ),
     );
@@ -140,5 +151,16 @@ class MyRowFour extends StatelessWidget {
       builder: (context, counterVM, child) =>
           Text("counter is ${counterVM.counter}"),
     );
+  }
+}
+
+//如果既想共享WZCounterViewModel 又想共享WZUserInfoViewModel
+//可以使用Consumer2
+class MyRowFive extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Consumer2<WZCounterViewModel, WZUserInfoViewModel>(
+        builder: (context, countVM, userVM, child) =>
+            Text("count is ${countVM.counter}, name is ${userVM.user.name}"));
   }
 }
