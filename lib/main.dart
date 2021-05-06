@@ -4,6 +4,7 @@ import 'package:study_flutter_003/core/model/category.dart';
 import 'package:study_flutter_003/core/viewmodel/meal_view_model.dart';
 import 'package:study_flutter_003/size/size.dart';
 import 'package:study_flutter_003/theme/theme.dart';
+import 'package:study_flutter_003/ui/pages/meal/meal_detail.dart';
 import 'package:study_flutter_003/ui/pages/meal/meal_page.dart';
 
 import 'core/service/json_parse.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
       routes: {
         MyHomePage.routeName: (context) => MyHomePage(),
         WZMealPage.routeName: (context) => WZMealPage(),
+        WZMealDetailPage.routeName:(context)=>WZMealDetailPage(),
       },
       theme: WZAppTheme.themeData,
       darkTheme: WZAppTheme.darkThemeData,
