@@ -107,7 +107,7 @@ Widget lastRow(WZMealModel meal) {
                     size: 10.px,
                     color: isContain ? Colors.red : Colors.grey,
                   ),
-                  "未收藏"),
+                  isContain ? "收藏" :"未收藏"),
             );
           },
         )

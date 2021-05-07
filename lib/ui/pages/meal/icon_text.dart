@@ -9,17 +9,22 @@ class HorizontalIconText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        _icon,
-        SizedBox(
-          width: 2.px,
-        ),
-        Text(_title, style: Theme.of(context).textTheme.bodyText2.copyWith(
-          color: Colors.black,
-          fontSize: 8.px
-        ),),
-      ],
+    return Container(
+      width: 60.px,
+      padding: EdgeInsets.all(5.px),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _icon,
+          SizedBox(
+            width: 2.px,
+          ),
+          Text(_title, style: Theme.of(context).textTheme.bodyText2.copyWith(
+            color: Colors.black,
+            fontSize: 8.px
+          ),),
+        ],
+      ),
     );
   }
 }

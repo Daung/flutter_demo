@@ -5,6 +5,7 @@ import 'package:study_flutter_003/core/viewmodel/favor_view_model.dart';
 import 'package:study_flutter_003/core/viewmodel/meal_view_model.dart';
 import 'package:study_flutter_003/size/size.dart';
 import 'package:study_flutter_003/theme/theme.dart';
+import 'package:study_flutter_003/ui/pages/favor/favorite.dart';
 import 'package:study_flutter_003/ui/pages/meal/meal_detail.dart';
 import 'package:study_flutter_003/ui/pages/meal/meal_page.dart';
 
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         MyHomePage.routeName: (context) => MyHomePage(),
         WZMealPage.routeName: (context) => WZMealPage(),
         WZMealDetailPage.routeName: (context) => WZMealDetailPage(),
+        WZFavoritePage.routeName: (context) => WZFavoritePage(),
       },
       theme: WZAppTheme.themeData,
       darkTheme: WZAppTheme.darkThemeData,
@@ -44,17 +46,38 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+final List<String> names = ["首页", "收藏"];
+
+class MyHomePage extends StatefulWidget {
   static const routeName = "/";
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _index = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("mei shi"),
+        title: Text(names[_index]),
       ),
-      body: MyHomeContent(),
+      body: IndexedStack(
+        index: _index,
+        children: [
+          MyHomeContent(),
+          WZFavoritePage(),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _index,
+        onTap: (index) {
+          setState(() {
+            _index = index;
+          });
+        },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "首页"),
           BottomNavigationBarItem(icon: Icon(Icons.star), label: "收藏")

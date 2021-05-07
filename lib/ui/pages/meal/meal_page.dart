@@ -27,7 +27,6 @@ class WZMealPage extends StatelessWidget {
           shouldRebuild: (prev, next) => ListEquality().equals(prev, next),
           builder: (context, meals, child) {
             return ListView.builder(
-
                 itemCount: meals.length,
                 itemBuilder: (context, index) {
                   return WZMealItem(meals[index]);
