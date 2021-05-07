@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:study_flutter_003/core/model/category.dart';
 import 'package:study_flutter_003/core/viewmodel/favor_view_model.dart';
+import 'package:study_flutter_003/core/viewmodel/filter_view_model.dart';
 import 'package:study_flutter_003/core/viewmodel/meal_view_model.dart';
 import 'package:study_flutter_003/size/size.dart';
 import 'package:study_flutter_003/theme/theme.dart';
+import 'package:study_flutter_003/ui/pages/draw/draw.dart';
+import 'package:study_flutter_003/ui/pages/draw/meal_filter.dart';
 import 'package:study_flutter_003/ui/pages/favor/favorite.dart';
 import 'package:study_flutter_003/ui/pages/meal/meal_detail.dart';
 import 'package:study_flutter_003/ui/pages/meal/meal_page.dart';
@@ -15,10 +18,26 @@ import 'extension/int_fit.dart';
 void main() {
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(
-        create: (context) => WZMealViewModel(),
-      ),
-      ChangeNotifierProvider(create: (context) => WZFavoriteMealViewModel()),
+      // ChangeNotifierProvider(
+      //   create: (context) => WZMealViewModel(),
+      // ),
+
+      ChangeNotifierProvider(create: (context) => WZFilterViewModel()),
+      //如果两个VM产生依赖，使用ChangeNotifierProxyProvider，传入两个类型，然后把一个类型的
+      //然后调用依赖对象的方法 ，把另外一个对象作为参数传递过去。好好体会
+      ChangeNotifierProxyProvider<WZFilterViewModel, WZMealViewModel>(
+          create: (context) => WZMealViewModel(),
+          update: (context, filterVM, mealVM) {
+            mealVM.update(filterVM);
+            return mealVM;
+          }),
+
+      ChangeNotifierProxyProvider<WZFilterViewModel,WZFavoriteMealViewModel>(
+          create: (context) => WZFavoriteMealViewModel(), update: (context,filterVM, favoriteVM) {
+            favoriteVM.update(filterVM);
+            return favoriteVM;
+      }),
+      // ChangeNotifierProvider(create: (context) => WZFavoriteMealViewModel()),
     ],
     child: MyApp(),
   ));
@@ -37,6 +56,14 @@ class MyApp extends StatelessWidget {
         WZMealPage.routeName: (context) => WZMealPage(),
         WZMealDetailPage.routeName: (context) => WZMealDetailPage(),
         WZFavoritePage.routeName: (context) => WZFavoritePage(),
+        WZMealFilterPage.routeName: (context) => WZMealFilterPage(),
+      },
+      onGenerateRoute: (settings) {
+        if (settings.name == WZMealFilterPage.routeName) {
+          return MaterialPageRoute(
+              builder: (context) => WZMealFilterPage(), fullscreenDialog: true);
+        }
+        return null;
       },
       theme: WZAppTheme.themeData,
       darkTheme: WZAppTheme.darkThemeData,
@@ -83,6 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.star), label: "收藏")
         ],
       ),
+      drawer: WZDrawer(),
     );
   }
 }
