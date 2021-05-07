@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:study_flutter_003/core/model/meal.dart';
+import 'package:study_flutter_003/core/viewmodel/favor_view_model.dart';
 import 'package:study_flutter_003/extension/int_fit.dart';
 import 'package:study_flutter_003/ui/pages/meal/icon_text.dart';
 import 'package:study_flutter_003/ui/pages/meal/meal_detail.dart';
@@ -88,12 +90,27 @@ Widget lastRow(WZMealModel meal) {
               size: 10.px,
             ),
             "${meal.complexStr}难度"),
-        HorizontalIconText(
-            Icon(
-              Icons.favorite,
-              size: 10.px,
-            ),
-            "未收藏"),
+        Consumer<WZFavoriteMealViewModel>(
+          builder: (context, favorVM, child) {
+            bool isContain = favorVM.isContain(meal);
+            return InkWell(
+              onTap: () {
+                if(isContain) {
+                  favorVM.removeMeal(meal);
+                }else {
+                  favorVM.addMeal(meal);
+                }
+              },
+              child: HorizontalIconText(
+                  Icon(
+                    Icons.favorite,
+                    size: 10.px,
+                    color: isContain ? Colors.red : Colors.grey,
+                  ),
+                  "未收藏"),
+            );
+          },
+        )
       ],
     ),
   );

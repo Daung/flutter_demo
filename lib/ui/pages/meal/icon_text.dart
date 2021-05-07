@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:study_flutter_003/extension/int_fit.dart';
 
 class HorizontalIconText extends StatelessWidget {
-  final Icon _icon;
+  final Widget _icon;
   final String _title;
 
   HorizontalIconText(this._icon, this._title);

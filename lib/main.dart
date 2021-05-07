@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:study_flutter_003/core/model/category.dart';
+import 'package:study_flutter_003/core/viewmodel/favor_view_model.dart';
 import 'package:study_flutter_003/core/viewmodel/meal_view_model.dart';
 import 'package:study_flutter_003/size/size.dart';
 import 'package:study_flutter_003/theme/theme.dart';
@@ -15,7 +16,8 @@ void main() {
     providers: [
       ChangeNotifierProvider(
         create: (context) => WZMealViewModel(),
-      )
+      ),
+      ChangeNotifierProvider(create: (context) => WZFavoriteMealViewModel()),
     ],
     child: MyApp(),
   ));
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
       routes: {
         MyHomePage.routeName: (context) => MyHomePage(),
         WZMealPage.routeName: (context) => WZMealPage(),
-        WZMealDetailPage.routeName:(context)=>WZMealDetailPage(),
+        WZMealDetailPage.routeName: (context) => WZMealDetailPage(),
       },
       theme: WZAppTheme.themeData,
       darkTheme: WZAppTheme.darkThemeData,
