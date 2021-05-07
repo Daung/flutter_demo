@@ -14,11 +14,15 @@ class WZFavoritePage extends StatelessWidget {
       // ),
       body: Consumer<WZFavoriteMealViewModel>(
         builder: (context, favorVM, child) {
-          return ListView.builder(
-              itemCount: favorVM.meals.length,
-              itemBuilder: (context, index) {
-                return WZMealItem(favorVM.meals[index]);
-              });
+          return favorVM.meals.length == 0
+              ? Center(
+                  child: Text("未收藏美食"),
+                )
+              : ListView.builder(
+                  itemCount: favorVM.meals.length,
+                  itemBuilder: (context, index) {
+                    return WZMealItem(favorVM.meals[index]);
+                  });
         },
       ),
     );
